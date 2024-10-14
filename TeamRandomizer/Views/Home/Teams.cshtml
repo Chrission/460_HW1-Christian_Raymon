@@ -1,0 +1,75 @@
+﻿@using TeamRandomizer.Models
+@model TeamRandomizer.Models.NameShuffler
+@{
+    ViewData["Title"] = "Team Assignment";
+
+    string GenerateRandomGradient()
+    {
+        Random rand = new Random();
+
+        // Generate a random HSL color within pastel ranges
+        string RandomPastelColor() =>
+        $"hsl({rand.Next(0, 361)}, {rand.Next(30, 51)}%, {rand.Next(70, 91)}%)";
+
+        string pastelColor = RandomPastelColor();
+        return $"linear-gradient(to right, #fff 0%, {pastelColor} 101%)";
+    }
+
+}
+
+<div class="container text-left">
+
+    @if (Model.NamesArray != null && Model.NamesArray.Any() && Model.TeamAmount != null)
+    {
+        // Reminder to subtract one when using to navigate array
+        int remainingNames = Model.NamesArray.Length;
+        int teamCountRemaining = (int)Model.TeamAmount;
+        int curTeam = 1;
+
+        @while (teamCountRemaining > 0)
+        {
+
+            <div class="row">
+                <!-- ChatGPT helped with the logic on creating new rows, as the logic was escaping me -->
+                @for (int card = 0; card < 3 && teamCountRemaining > 0; card++)
+                {
+                    int nextTeamMemCount = Math.Min(remainingNames, Model.TeamSize ?? remainingNames);
+                    string gradient = GenerateRandomGradient();
+
+                    <div class="col-4">
+
+                        <!-- Create cards for each team -->
+                        <div class="card" style="width: auto; background: @gradient;">
+                            <div class="card-body">
+                                <h5 class="card-title" id=@($"team{curTeam}")>Team @curTeam</h5>
+                                <table>
+                                    <!-- Assign names to teams within the cards -->
+                                    @for (int i = 0; i < nextTeamMemCount; i++)
+                                    {
+                                        <tr class="card-row">
+                                            <td>
+                                                @Model.NamesArray[remainingNames - 1]
+                                            </td>
+                                        </tr>
+                                        --remainingNames;
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    --teamCountRemaining;
+                    ++curTeam;
+                }
+            </div>
+        }
+
+    }
+    else
+    {
+        <p>No names available to display.</p>
+    }
+
+    <br><br>
+    <button id="assignNames">Assign Team Names</button>
+
+</div>

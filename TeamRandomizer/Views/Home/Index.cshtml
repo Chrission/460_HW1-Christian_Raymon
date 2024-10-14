@@ -1,0 +1,42 @@
+﻿@using TeamRandomizer.Models
+@model TeamRandomizer.Models.NameShuffler
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container text-left">
+
+    <form asp-controller="Home" asp-action="Teams" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="nms">Enter Names:</label>
+                </td>
+                <td>
+                    <textarea class="form-text" id="nms" style="resize: none;" cols="50"
+                        pattern="[a-zA-Z\s\,\.\-_\']+" asp-for="NamesString" required></textarea>
+                        <br><br>
+                        <span asp-validation-for="NamesString" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="tmsz">Team Size:</label>
+                </td>
+                <td>
+                    <input class="form-text" type="number" id="tmsz" size="10" min="2" max="10"
+                        asp-for="TeamSize" required>
+                    <br><br>
+                    <span asp-validation-for="TeamSize" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <button type="submit">Assign Teams</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>

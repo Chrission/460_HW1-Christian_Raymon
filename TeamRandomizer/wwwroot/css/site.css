@@ -1,0 +1,91 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+form {
+  margin-top: 10%;
+}
+
+button {
+  background-color: #fff;
+  border-style: thin;
+  border-color: #747d85;
+  border-width: 2px;
+  box-shadow: 10px 10px #6C757D;
+
+}
+
+button:hover {
+  background-color: #fafafa;
+  border:inset 2px;
+}
+
+/* dotted dashed solid double groove ridge inset outset none hidden */
+
+.form-text {
+  margin-left: 15%;
+  box-shadow: 10px 10px;
+}
+
+.form-text:hover {
+  background-color: #fafafa;
+  border-style: solid;
+  border-color: #6C757D;
+  border-width: 2px;
+}
+
+.card {
+  margin: 2%;
+  box-shadow: 10px 10px #6C757D;
+  border: solid #6C757D;
+}
+
+.card-row {
+  border-top: thin;
+}
+
+#nms {
+  height: 200px;
+}
+
+/* Unused but inspirational */
+/* From https://gradientbuttons.colorion.co/ */     
+.btn-grad {
+  background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+/* from https://gradientbuttons.colorion.co/ */
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
